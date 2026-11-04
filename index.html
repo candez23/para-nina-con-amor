@@ -62,6 +62,68 @@
     @media(max-width:360px){.bouquet-stage{height:520px}.bouquet-message{font-size:16px}}
     @media(prefers-reduced-motion:reduce){.bouquet-stage .invitation-envelope:not([hidden]){animation:none}.bouquet-stage .invitation-envelope:hover,.bouquet-stage .invitation-envelope:focus-visible{transform:translate(-50%,-50%);transition:none}}
 
+    /* Sobres que se abren, papel que se despliega y un hogar que celebra el sí. */
+    .envelope-flap{transition:transform .68s cubic-bezier(.25,.7,.25,1),z-index 0s .36s}
+    .envelope-paper{transition:transform .85s cubic-bezier(.2,.7,.2,1) .25s}
+    .envelope-button.opened .envelope-paper{transform:translateY(-46px) rotate(-2deg)}
+    .envelope-button.opened .envelope-seal{transform:translate(7px,-7px) rotate(-28deg) scale(.78)}
+    .envelope-button.opening .envelope-visual{animation:envelope-unseal 1.1s ease both}
+    .envelope-button.opening .envelope-paper{animation:letter-slip 1.1s cubic-bezier(.25,.7,.25,1) both}
+    .envelope-button[aria-busy=true]{cursor:progress}
+    .letter.paper-unfolding{transform-origin:50% 0;animation:paper-unfold 1.35s cubic-bezier(.2,.65,.25,1) both}
+    .letter.paper-unfolding .letter-greeting{animation:ink-arrive .9s ease .2s both}
+    .letter.paper-unfolding>p{animation:ink-arrive .8s ease .3s both}
+    .letter.paper-unfolding>p:nth-of-type(2){animation-delay:.4s}.letter.paper-unfolding>p:nth-of-type(3){animation-delay:.5s}.letter.paper-unfolding>p:nth-of-type(n+4){animation-delay:.6s}
+    .winter-scene{position:relative;isolation:isolate;display:flex;align-items:flex-end;justify-content:center;width:min(590px,100%);margin:23px auto 0}
+    .winter-scene:before{content:'';position:absolute;z-index:-1;left:8%;right:0;bottom:2%;height:85%;pointer-events:none;background:radial-gradient(ellipse at 76% 63%,#e9b85938,transparent 62%);opacity:0;transition:opacity 2s ease}
+    .winter-scene.scene-lit:before{opacity:1}
+    .winter-scene .gingerbread{position:relative;z-index:1;flex:0 0 70%;width:70%;max-width:none;margin:0;transition:filter 1.8s ease}
+    .winter-scene .christmas-tree{position:relative;flex:0 0 34%;width:34%;max-width:210px;height:auto;margin:0 0 9px -4%}
+    .winter-scene .house-windows{opacity:.5;transition:opacity 1.4s ease .4s,filter 1.4s ease .4s}
+    .winter-scene.scene-lit .house-windows{opacity:1;filter:drop-shadow(0 0 9px #ffdc87)}
+    .winter-scene.scene-lit .gingerbread{filter:drop-shadow(0 8px 30px #efbe6f28)}
+    .winter-scene .house-smoke{opacity:.2;animation:none}
+    .winter-scene.scene-lit .house-smoke{animation:chimney-love 4.5s ease-in-out 2s infinite}
+    .scene-status{font:italic 16px/1.6 var(--serif);color:#f1cfac;min-height:27px;max-width:520px;margin:5px auto 16px}
+    .scene-replay{border:0;border-bottom:1px solid #c4988e;background:transparent;color:#f3d4c5;padding:10px 5px;min-height:44px;font:italic 15px var(--serif);margin:10px auto 4px;transition:color .2s}
+    .scene-replay span{margin-left:7px}.scene-replay:hover{color:#fff3db}.scene-replay[aria-disabled=true],.yes-button[aria-disabled=true]{cursor:progress;opacity:.8}
+    .celebration[open]{animation:dedication-arrive .6s ease both}
+    @keyframes envelope-unseal{0%{filter:drop-shadow(0 8px 8px #7a39451a)}45%{filter:drop-shadow(0 10px 18px #bc879449)}100%{filter:drop-shadow(0 8px 8px #7a39451a)}}
+    @keyframes letter-slip{0%,20%{transform:translateY(0)}68%{transform:translateY(-57px) rotate(-3deg)}100%{transform:translateY(-46px) rotate(-2deg)}}
+    @keyframes paper-unfold{0%{opacity:0;transform:translateY(35px) rotate(-2.3deg) scaleY(.965);box-shadow:2px 3px 0 #ead9ce}100%{opacity:1;transform:translateY(0) rotate(-.65deg) scaleY(1);box-shadow:7px 9px 0 #ead9ce,8px 10px 0 #d8c4b5}}
+    @keyframes ink-arrive{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+    @keyframes chimney-love{0%{opacity:0;transform:translateY(4px) scale(.8)}30%{opacity:.95}100%{opacity:0;transform:translateY(-35px) scale(1.15)}}
+    @keyframes dedication-arrive{from{opacity:0}to{opacity:1}}
+    @media(max-width:650px){.winter-scene{margin-top:18px}.winter-scene .christmas-tree{margin-bottom:5px}.scene-status{font-size:14px;min-height:24px;margin-bottom:17px}.scene-replay{font-size:14px}.envelope-button.opened .envelope-paper{transform:translateY(-40px) rotate(-2deg)}}
+    @media(prefers-reduced-motion:reduce){.envelope-button.opening .envelope-visual,.envelope-button.opening .envelope-paper,.letter.paper-unfolding,.letter.paper-unfolding .letter-greeting,.letter.paper-unfolding>p,.celebration[open]{animation:none!important}.letter.paper-unfolding,.letter.paper-unfolding .letter-greeting,.letter.paper-unfolding>p{opacity:1;transform:none}.winter-scene.scene-lit .house-smoke{opacity:1;animation:none!important}.winter-scene .house-windows,.winter-scene .gingerbread,.winter-scene:before{transition:none!important}}
+    
+    /* Pino ilustrado: únicamente la escena aceptada enciende sus adornos. */
+    .christmas-tree{display:block;width:190px;max-width:100%;height:auto;flex-shrink:0;overflow:visible}
+    .christmas-tree .tree-ornaments{opacity:0;transform:translateY(-9px) scale(.88);transform-box:fill-box;transform-origin:center}
+    .christmas-tree .tree-lights{opacity:0}
+    .christmas-tree .tree-garland{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+    .christmas-tree .tree-star{opacity:.58;transition:opacity 1.1s ease,filter 1.4s ease}
+    .christmas-tree .tree-star-shape{transition:fill 1.2s ease,stroke 1.2s ease}
+    .christmas-tree .tree-star-spark{opacity:0;transition:opacity 1.1s ease}
+    .winter-scene.scene-lit .tree-ornaments{animation:tree-ornament-arrive .9s cubic-bezier(.2,.65,.3,1) var(--ornament-delay,0s) forwards}
+    .winter-scene.scene-lit .tree-garland{animation:tree-garland-draw 2.2s ease .25s forwards}
+    .winter-scene.scene-lit .tree-lights{animation:tree-light-warm 1.3s ease var(--ornament-delay,.5s) forwards;filter:drop-shadow(0 0 3px #ffdc8c)}
+    .winter-scene.scene-lit .tree-star{opacity:1;filter:drop-shadow(0 0 7px #f8d58f);transition-delay:2.05s}
+    .winter-scene.scene-lit .tree-star-shape{fill:#ffe5a4;stroke:#fff0c7;transition-delay:2.05s}
+    .winter-scene.scene-lit .tree-star-spark{opacity:.85;transition-delay:2.3s}
+    @keyframes tree-ornament-arrive{from{opacity:0;transform:translateY(-9px) scale(.88)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes tree-garland-draw{from{opacity:0;stroke-dashoffset:1}to{opacity:.92;stroke-dashoffset:0}}
+    @keyframes tree-light-warm{from{opacity:0}to{opacity:1}}
+    @media(max-width:650px){.christmas-tree{width:136px}}
+    @media(max-width:360px){.christmas-tree{width:115px}}
+    @media(prefers-reduced-motion:reduce){
+      .christmas-tree .tree-star,.christmas-tree .tree-star-shape,.christmas-tree .tree-star-spark{transition:none!important}
+      .winter-scene.scene-lit .tree-ornaments{animation:none!important;opacity:1;transform:none}
+      .winter-scene.scene-lit .tree-garland{animation:none!important;opacity:.92;stroke-dashoffset:0}
+      .winter-scene.scene-lit .tree-lights{animation:none!important;opacity:1}
+    }
+
+    .winter-scene:not(.scene-lit) .tree-star,.winter-scene:not(.scene-lit) .tree-star-shape,.winter-scene:not(.scene-lit) .tree-star-spark{transition:none}
   </style>
 </head>
 <body>
@@ -153,7 +215,7 @@
       <path class="ribbon drawn" style="--delay:3s" d="M280 624 C230 591 223 625 279 636 C326 645 350 613 318 617 C294 620 291 641 263 665 M299 635 Q317 664 337 669"/>
     </svg></div>
       <div class="reveal"><p class="eyebrow">03 / UNA GRAN PETICIÓN</p><h2 id="question-title">¿Me acompañas a hacer<br><em>nuestra segunda casita?</em></h2>
-      <svg class="gingerbread" viewBox="0 0 480 365" aria-hidden="true" focusable="false">
+      <div class="winter-scene" id="winter-scene" role="img" aria-label="Una casita de jengibre junto a un pino, esperando nuestro sí" data-state="resting"><svg class="gingerbread" viewBox="0 0 480 365" aria-hidden="true" focusable="false">
   <defs><linearGradient id="roof" x2="0" y2="1"><stop stop-color="#bb7871"/><stop offset="1" stop-color="#8f4b51"/></linearGradient><linearGradient id="biscuit" x2="0" y2="1"><stop stop-color="#d6a174"/><stop offset="1" stop-color="#b77d57"/></linearGradient><radialGradient id="window"><stop stop-color="#ffe7a0"/><stop offset="1" stop-color="#e2b269"/></radialGradient></defs>
   <ellipse cx="240" cy="330" rx="184" ry="13" fill="#2d1020" opacity=".35"/>
   <path class="chimney" d="M322 123 V60 H353 V153" fill="#bd8b6c" stroke="#ffead8" stroke-width="5"/>
@@ -165,7 +227,7 @@
   <path d="M208 320 V251 A32 32 0 0 1 272 251 V320" fill="#7e4547" stroke="#fff0db" stroke-width="6"/>
   <path d="M221 317 V254 A19 19 0 0 1 259 254 V317" fill="none" stroke="#bb7770" stroke-width="2"/>
   <circle cx="255" cy="277" r="4" fill="#f3d798"/>
-  <g fill="url(#window)" stroke="#fff0db" stroke-width="6"><rect x="130" y="204" width="49" height="51" rx="11"/><rect x="302" y="204" width="49" height="51" rx="11"/></g>
+  <g class="house-windows" fill="url(#window)" stroke="#fff0db" stroke-width="6"><rect x="130" y="204" width="49" height="51" rx="11"/><rect x="302" y="204" width="49" height="51" rx="11"/></g>
   <path d="M154 205 V255 M130 229 H179 M326 205 V255 M302 229 H351" stroke="#fff0db" stroke-width="4"/>
   <path d="M225 162 C203 147 225 129 240 147 C255 129 277 147 255 162 L240 177 Z" fill="#b85b6c" stroke="#fff0db" stroke-width="4"/>
   <path d="M108 282 Q120 292 132 282 T156 282 T180 282 M300 282 Q312 292 324 282 T348 282 T372 282" fill="none" stroke="#fff0db" stroke-width="4"/>
@@ -173,10 +235,70 @@
   <g stroke="#ffe4d2" stroke-width="5" stroke-linecap="round"><path d="M76 315 V267 Q76 247 61 254 Q48 260 60 271" fill="none"/><path d="M404 316 V267 Q404 247 419 254 Q432 260 420 271" fill="none"/></g>
   <g fill="#da8993"><circle cx="132" cy="270" r="4"/><circle cx="178" cy="270" r="4"/><circle cx="302" cy="270" r="4"/><circle cx="350" cy="270" r="4"/></g>
   <path d="M221 335 Q240 326 259 335" fill="none" stroke="#e9cbb0" stroke-width="6" stroke-linecap="round"/>
-</svg>
+</svg><svg class="christmas-tree" id="christmas-tree" viewBox="0 0 230 340" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="tree-sage" x1="0" y1="0" x2="1" y2=".7"><stop stop-color="#a1ad8e"/><stop offset=".48" stop-color="#819575"/><stop offset="1" stop-color="#5c775f"/></linearGradient>
+    <linearGradient id="tree-deep" x1="0" y1="0" x2="1" y2=".9"><stop stop-color="#8c9c7c"/><stop offset="1" stop-color="#4d6958"/></linearGradient>
+    <linearGradient id="tree-pot" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0de"/><stop offset="1" stop-color="#dfbca6"/></linearGradient>
+    <linearGradient id="tree-rose" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4c6bb"/><stop offset="1" stop-color="#b45a74"/></linearGradient>
+    <linearGradient id="tree-gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0bb"/><stop offset="1" stop-color="#bf935f"/></linearGradient>
+  </defs>
+  <ellipse cx="115" cy="321" rx="86" ry="8" fill="#2d1020" opacity=".22"/>
+  <path d="M104 259 H126 V301 H104 Z" fill="#a47a61" stroke="#d7b294" stroke-width="2"/>
+  <path d="M88 286 H142 L136 316 Q115 324 94 316 Z" fill="url(#tree-pot)" stroke="#f8e8d5" stroke-width="2"/>
+  <path d="M87 286 Q115 292 143 286 V293 Q115 300 87 293 Z" fill="#f9e9d5" stroke="#e5c6b0" stroke-width="1.2"/>
+  <path d="M108 305 C101 300 108 294 115 301 C122 294 129 300 122 305 L115 312 Z" fill="#b77b86" opacity=".8"/>
+  <!-- Ramas aterciopeladas superpuestas, con nieve suave en sus bordes. -->
+  <path d="M115 176 C95 208 61 231 31 258 Q20 269 36 276 Q114 298 194 276 Q210 269 199 258 C166 229 136 206 115 176 Z" fill="url(#tree-deep)" stroke="#bdc1a2" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M115 124 C97 155 72 181 48 207 Q35 221 52 228 Q115 249 180 228 Q196 222 184 208 C158 181 133 155 115 124 Z" fill="url(#tree-sage)" stroke="#c3c7a9" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M115 77 C102 104 82 128 65 151 Q54 164 69 172 Q114 188 163 172 Q178 165 167 152 C147 127 128 103 115 77 Z" fill="url(#tree-deep)" stroke="#bdc5a7" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M115 35 C106 57 93 80 80 99 Q69 113 83 120 Q115 133 148 120 Q162 114 151 100 C137 79 123 56 115 35 Z" fill="url(#tree-sage)" stroke="#ccd0b3" stroke-width="1.5" stroke-linejoin="round"/>
+  <g fill="none" stroke="#f7e8d2" stroke-width="2.7" stroke-linecap="round" opacity=".66">
+    <path d="M82 118 Q114 130 148 118"/><path d="M69 169 Q115 186 163 169"/><path d="M51 225 Q115 247 181 225"/><path d="M35 273 Q113 295 196 273"/>
+  </g>
+  <g fill="none" stroke="#bac4a7" stroke-width=".9" opacity=".42" stroke-linecap="round">
+    <path d="M115 53 Q110 79 97 97 M115 68 Q124 90 135 101 M115 126 Q94 145 79 157 M118 139 Q133 156 151 163 M112 184 Q87 203 66 213 M119 193 Q143 213 164 219 M111 234 Q88 251 54 261 M122 243 Q145 260 179 266"/>
+  </g>
+  <!-- El hilo de la guirnalda se dibuja antes de encender sus pequeñas luces. -->
+  <path class="tree-garland" d="M99 83 C109 94 130 96 139 105 C153 121 103 139 86 144 C60 157 154 171 157 184 C160 200 74 217 66 229 C54 245 153 254 180 266" fill="none" stroke="#edc8a0" stroke-width="2" stroke-linecap="round" pathLength="1"/>
+  <g class="tree-ornaments" style="--ornament-delay:.22s">
+    <path d="M113 61 V72" stroke="#e4c698" stroke-width="1"/><circle cx="113" cy="77" r="5.5" fill="url(#tree-gold)" stroke="#f8e7c1" stroke-width=".8"/><circle cx="111" cy="75" r="1.2" fill="#fff6d5"/>
+    <path d="M98 93 V105" stroke="#e4c698" stroke-width="1"/><circle cx="98" cy="110" r="5.5" fill="url(#tree-rose)" stroke="#f5d5cb" stroke-width=".8"/><circle cx="96" cy="108" r="1.3" fill="#ffe9dc"/>
+  </g>
+  <g class="tree-ornaments" style="--ornament-delay:.55s">
+    <path d="M132 109 V123" stroke="#e4c698" stroke-width="1"/><path d="M126 128 C120 123 126 117 132 123 C138 117 144 123 138 128 L132 134 Z" fill="url(#tree-rose)" stroke="#f6d9ca" stroke-width=".8"/>
+    <path d="M88 145 V155 M143 146 V157" stroke="#e4c698" stroke-width="1"/><circle cx="88" cy="160" r="5.5" fill="url(#tree-gold)" stroke="#f8e7c1" stroke-width=".8"/><circle cx="143" cy="162" r="5" fill="#f0c3b4" stroke="#f9ded0" stroke-width=".8"/><circle cx="86" cy="158" r="1.1" fill="#fff6d5"/>
+  </g>
+  <g class="tree-ornaments" style="--ornament-delay:.91s">
+    <path d="M112 154 V168" stroke="#e4c698" stroke-width="1"/><circle cx="112" cy="173" r="6" fill="url(#tree-rose)" stroke="#f7d7cd" stroke-width=".8"/><circle cx="110" cy="171" r="1.4" fill="#fff0e3"/>
+    <path d="M73 190 V202 M156 193 V205" stroke="#e4c698" stroke-width="1"/><circle cx="73" cy="207" r="5.5" fill="#f2d5bc" stroke="#fff0dc" stroke-width=".8"/><circle cx="156" cy="210" r="6" fill="url(#tree-gold)" stroke="#faeac8" stroke-width=".8"/>
+  </g>
+  <g class="tree-ornaments" style="--ornament-delay:1.24s">
+    <path d="M101 204 V219" stroke="#e4c698" stroke-width="1"/><path d="M95 224 C89 219 95 213 101 219 C107 213 113 219 107 224 L101 230 Z" fill="url(#tree-rose)" stroke="#f6d9ca" stroke-width=".8"/>
+    <path d="M129 212 V225" stroke="#e4c698" stroke-width="1"/><circle cx="129" cy="230" r="5.5" fill="url(#tree-gold)" stroke="#f9e7c0" stroke-width=".8"/><circle cx="127" cy="228" r="1.2" fill="#fff6d5"/>
+  </g>
+  <g class="tree-ornaments" style="--ornament-delay:1.58s">
+    <path d="M54 245 V258 M84 243 V257 M155 244 V259 M179 253 V267" stroke="#e4c698" stroke-width="1"/>
+    <circle cx="54" cy="263" r="5" fill="url(#tree-gold)" stroke="#f9e7c0" stroke-width=".8"/><circle cx="84" cy="262" r="6" fill="url(#tree-rose)" stroke="#f7d7cd" stroke-width=".8"/><circle cx="155" cy="264" r="5.5" fill="#edc6b6" stroke="#f9e1cd" stroke-width=".8"/><circle cx="179" cy="272" r="4.5" fill="url(#tree-rose)" stroke="#f5d5cb" stroke-width=".8"/>
+    <circle cx="82" cy="260" r="1.4" fill="#fff0e3"/><circle cx="153" cy="262" r="1.2" fill="#fff0e3"/>
+  </g>
+  <g class="tree-ornaments" style="--ornament-delay:1.93s">
+    <path d="M114 250 V270" stroke="#e4c698" stroke-width="1"/><path d="M107 275 C100 269 107 262 114 269 C121 262 128 269 121 275 L114 282 Z" fill="url(#tree-rose)" stroke="#f6d9ca" stroke-width="1"/>
+    <path d="M106 64 Q115 58 123 64 L115 70 Z" fill="#cc8e92" stroke="#f2c3b6" stroke-width=".8"/>
+  </g>
+  <g class="tree-lights" style="--ornament-delay:.58s" fill="#ffe3a1"><circle cx="106" cy="90" r="2.2"/><circle cx="129" cy="99" r="2.2"/><circle cx="135" cy="115" r="2"/></g>
+  <g class="tree-lights" style="--ornament-delay:.96s" fill="#ffe3a1"><circle cx="111" cy="133" r="2.2"/><circle cx="88" cy="144" r="2"/><circle cx="99" cy="155" r="2.2"/><circle cx="128" cy="163" r="2.2"/></g>
+  <g class="tree-lights" style="--ornament-delay:1.34s" fill="#ffe3a1"><circle cx="154" cy="179" r="2.2"/><circle cx="137" cy="194" r="2"/><circle cx="108" cy="207" r="2.2"/><circle cx="78" cy="218" r="2.1"/></g>
+  <g class="tree-lights" style="--ornament-delay:1.76s" fill="#ffe3a1"><circle cx="70" cy="234" r="2.2"/><circle cx="94" cy="245" r="2.2"/><circle cx="123" cy="252" r="2"/><circle cx="152" cy="259" r="2.2"/><circle cx="173" cy="265" r="2"/></g>
+  <g class="tree-star">
+    <path class="tree-star-shape" d="M115 11 L119.7 21.4 L131 22.7 L122.6 30.3 L124.8 41.5 L115 35.9 L105.2 41.5 L107.4 30.3 L99 22.7 L110.3 21.4 Z" fill="#bda88c" stroke="#e2ccb0" stroke-width="1.2" stroke-linejoin="round"/>
+    <path class="tree-star-spark" d="M115 2 V6 M92 12 L96 15 M134 13 L138 10 M93 34 L97 32 M134 34 L138 37" fill="none" stroke="#ffe5a9" stroke-width="1" stroke-linecap="round"/>
+  </g>
+</svg></div>
+      <p class="scene-status" id="scene-status" role="status" aria-live="polite"></p>
       <p class="question-text">Nina, ¿quieres construir una casita<br>de jengibre conmigo?</p>
       <div class="question-actions" id="question-actions"><button class="yes-button" id="yes-button" type="button">Sí, contigo <span aria-hidden="true">♡</span></button><button class="no-button" id="no-button" type="button" aria-describedby="no-status">No… ¿o sí?</button></div>
-      <p class="no-status" id="no-status" role="status" aria-live="polite">Prometo poner el amor. Y probablemente comerme un dulce.</p><p class="question-postscript">GALLETAS + GLASEADO + TÚ Y YO</p></div>
+      <p class="no-status" id="no-status" role="status" aria-live="polite">Prometo poner el amor. Y probablemente comerme un dulce.</p><button class="scene-replay" id="replay-scene" type="button" aria-controls="winter-scene" hidden>Volver a encender este momento <span aria-hidden="true">♡</span></button><p class="question-postscript">GALLETAS + GLASEADO + TÚ Y YO</p></div>
     </section>
   </main>
   <footer class="footer"><div class="footer-heart" aria-hidden="true">♡</div><p class="footer-line">Mi lugar favorito siempre será contigo.</p><p class="footer-small">PARA TI, NINA. CON TODO MI AMOR.</p><a class="back-top" href="#inicio">Volver al recorrido de mi amor por ti ↑</a></footer>
@@ -194,7 +316,7 @@
     if ('IntersectionObserver' in window && !reduceMotion.matches) {
       const reveals = document.querySelectorAll('.reveal');
       const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-        if (entry.isIntersecting) {entry.target.classList.add('visible');observer.unobserve(entry.target);}
+        if (entry.isIntersecting) {entry.target.classList.add('visible');if(entry.target.classList.contains('letter'))entry.target.classList.add('paper-unfolding');observer.unobserve(entry.target);}
       }), {threshold:.09});
       reveals.forEach(el => observer.observe(el));
       document.body.classList.add('motion-ready');
@@ -212,13 +334,21 @@
     function bloom(count=30,celebrate=false){if(!ctx||reduceMotion.matches)return;const max=Math.min(count,90);for(let i=0;i<max;i++){const angle=Math.random()*Math.PI*2;const speed=60+Math.random()*220;particles.push({x:celebrate?width/2:width*(.15+Math.random()*.7),y:celebrate?height*.48:height*.8,vx:Math.cos(angle)*speed,vy:celebrate?Math.sin(angle)*speed-110:-150-Math.random()*170,gravity:35+Math.random()*30,size:5+Math.random()*8,color:palette[i%palette.length],rotation:Math.random()*6,spin:(Math.random()-.5)*1.8,life:4+Math.random()*3});}particles=particles.slice(-160);if(!frame){last=performance.now();frame=requestAnimationFrame(tick);}}
     let toastTimer;function toast(message){$('live-message').textContent=message;$('live-message').classList.add('shown');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('live-message').classList.remove('shown'),4200);}
     // Sobres reales: la carta y la petición se abren en su momento.
-    function openSection(id,control){const section=$(id);section.hidden=false;control?.setAttribute('aria-expanded','true');control?.classList.add('opened');const heading=section.querySelector('h2');heading?.setAttribute('tabindex','-1');setTimeout(()=>{section.scrollIntoView({behavior:reduceMotion.matches?'instant':'smooth',block:'start'});heading?.focus({preventScroll:true});},reduceMotion.matches?0:360);}
+    const openingSections=new Set();
+    function openSection(id,control,immediate=false){
+      if(openingSections.has(id))return;
+      const section=$(id),alreadyOpen=!section.hidden;
+      const reveal=()=>{section.hidden=false;control?.setAttribute('aria-expanded','true');control?.removeAttribute('aria-busy');control?.classList.remove('opening');openingSections.delete(id);const heading=section.querySelector('h2');heading?.setAttribute('tabindex','-1');section.scrollIntoView({behavior:reduceMotion.matches?'instant':'smooth',block:'start'});heading?.focus({preventScroll:true});};
+      control?.classList.add('opened');
+      if(immediate||reduceMotion.matches||alreadyOpen){reveal();return;}
+      openingSections.add(id);control?.setAttribute('aria-busy','true');control?.classList.add('opening');setTimeout(reveal,1100);
+    }
     $('letter-envelope').addEventListener('click',()=>{openSection('carta',$('letter-envelope'));bloom(28);});
-    document.querySelectorAll('a[href="#carta"]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();openSection('carta',$('letter-envelope'));}));
+    document.querySelectorAll('a[href="#carta"]').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();openSection('carta',$('letter-envelope'),true);}));
     $('bloom-button').addEventListener('click',()=>{$('bloom-button').setAttribute('aria-expanded','true');revealBouquet();bloom(65);setTimeout(()=>$('bouquet-stage').scrollIntoView({behavior:reduceMotion.matches?'instant':'smooth',block:'center'}),60);});
     $('invitation-envelope').addEventListener('click',()=>{openSection('pregunta',$('invitation-envelope'));bloom(75);});
-    if(location.hash==='#carta')openSection('carta',$('letter-envelope'));
-    if(location.hash==='#pregunta')openSection('pregunta',$('invitation-envelope'));
+    if(location.hash==='#carta')openSection('carta',$('letter-envelope'),true);
+    if(location.hash==='#pregunta')openSection('pregunta',$('invitation-envelope'),true);
 
     // Este No es una broma infinita: nunca registra ni fuerza una respuesta.
     const no=$('no-button');let escapes=0,accepted=false,lastEscape=0;
@@ -378,7 +508,26 @@
 
     const dialog=$('celebration');
     function closeCelebration(){dialog.close();}
-    $('yes-button').addEventListener('click',()=>{accepted=true;no.style.transform='';$('yes-button').innerHTML='Nuestro plan más dulce ♡';$('no-status').textContent='Tú, yo y una casita por construir. No necesito más.';dialog.appendChild(canvas);if(!dialog.open)dialog.showModal();document.body.classList.add('modal-open');bloom(85,true);});
+    const winterScene=$('winter-scene'),sceneStatus=$('scene-status'),replayScene=$('replay-scene'),yesButton=$('yes-button');
+    let sceneBusy=false,sceneTimer=null,finishScene=null,dedicationWaiting=false,dedicationTimer=null;
+    function showDedication(){clearTimeout(dedicationTimer);dedicationTimer=null;if(document.hidden){dedicationWaiting=true;return;}dedicationWaiting=false;dialog.appendChild(canvas);if(!dialog.open)dialog.showModal();document.body.classList.add('modal-open');bloom(85,true);}
+    function illuminateHome(withDedication=false){
+      if(sceneBusy)return;
+      sceneBusy=true;yesButton.setAttribute('aria-busy','true');yesButton.setAttribute('aria-disabled','true');replayScene.setAttribute('aria-disabled','true');
+      winterScene.classList.remove('scene-lit');winterScene.dataset.state='lighting';winterScene.setAttribute('aria-label','Nuestra casita de jengibre y el pino se están iluminando');
+      sceneStatus.textContent='Con tu sí, nuestro pequeño hogar empieza a brillar ♡';
+      if(withDedication)yesButton.textContent='Un poquito de magia ♡';
+      // Reinicia únicamente el dibujo de la escena para poder repetir este momento.
+      void winterScene.offsetWidth;winterScene.classList.add('scene-lit');
+      winterScene.scrollIntoView({behavior:reduceMotion.matches?'instant':'smooth',block:'center'});
+      const complete=()=>{if(!sceneBusy)return;clearTimeout(sceneTimer);sceneTimer=null;finishScene=null;sceneBusy=false;winterScene.dataset.state='lit';winterScene.setAttribute('aria-label','Nuestra casita de jengibre iluminada y el pino decorado con esferas, luces y una estrella brillante');sceneStatus.textContent='Nuestro pequeño hogar ya brilla para ti ♡';yesButton.removeAttribute('aria-busy');yesButton.removeAttribute('aria-disabled');yesButton.textContent='Nuestro plan más dulce ♡';replayScene.removeAttribute('aria-disabled');replayScene.hidden=false;if(withDedication)showDedication();};
+      finishScene=complete;
+      if(reduceMotion.matches)complete();else sceneTimer=setTimeout(complete,4200);
+    }
+    yesButton.addEventListener('click',()=>{if(sceneBusy)return;if(accepted){showDedication();return;}accepted=true;no.style.transform='';$('no-status').textContent='Tú, yo y una casita por construir. No necesito más.';illuminateHome(true);});
+    replayScene.addEventListener('click',()=>{clearTimeout(dedicationTimer);dedicationTimer=null;dedicationWaiting=false;illuminateHome(false);});
+    document.addEventListener('visibilitychange',()=>{if(document.hidden&&dedicationTimer){clearTimeout(dedicationTimer);dedicationTimer=null;dedicationWaiting=true;}else if(!document.hidden&&dedicationWaiting){if(reduceMotion.matches)showDedication();else dedicationTimer=setTimeout(showDedication,1100);}});
+    reduceMotion.addEventListener('change',()=>{if(!reduceMotion.matches)return;if(finishScene)finishScene();else if(dedicationWaiting&&!document.hidden)showDedication();});
     $('close-celebration').addEventListener('click',closeCelebration);$('celebration-return').addEventListener('click',closeCelebration);
     dialog.addEventListener('close',()=>{document.body.classList.remove('modal-open');document.body.appendChild(canvas);$('yes-button').focus({preventScroll:true});});
     dialog.addEventListener('click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeCelebration();}});
