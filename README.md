@@ -1,14 +1,13 @@
-# Para mi Nina hermosa, con todo mi corazón
+# Para mi Nina
 
-Dos versiones de un jardín de amor, listas para abrir:
+[Abre la página para Nina](https://candez23.github.io/para-mi-nina/)
 
-- [Versión 2: sobres, carta personal y ramo vivo](https://candez23.github.io/para-nina-con-amor/v2/)
-- [Versión 1 original, conservada intacta](https://candez23.github.io/para-nina-con-amor/v1/)
-- [Enlace principal](https://candez23.github.io/para-nina-con-amor/) (versión 2)
+Una carta, flores, música y una invitación, con todo mi corazón.
 
-Cada página es un HTML autocontenido: puedes abrirlo directamente en un navegador sin instalar nada.
-La música es la misma en ambas versiones. La segunda intenta reproducirla al entrar y, si el navegador bloquea el sonido automático, comienza con el primer toque. El botón superior permite silenciarla.
+El enlace principal no lleva número de versión. La página es un HTML autocontenido y también se puede abrir directamente en un navegador.
 
-El ramo tiene flores con movimiento y una segunda carta que revela la invitación. Los efectos respetan movimiento reducido. No hay rastreo ni envío de respuestas.
+[La primera versión original sigue guardada aquí](https://candez23.github.io/para-nina-con-amor/v1/).
 
-La etiqueta v1 conserva también el commit original de la primera página.
+La música se inicia al entrar cuando el navegador lo permite o con el primer toque. El botón superior permite silenciarla. No hay seguimiento ni envío de respuestas.
+
+[Acceso anterior a la segunda versión](https://candez23.github.io/para-nina-con-amor/v2/).
